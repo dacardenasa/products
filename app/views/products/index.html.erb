@@ -19,8 +19,8 @@
           <% @products.each do |product| %>
             <tr>
               <td><%= product.name %></td>
-              <td><%= product.precio %></td>
-              <td><%= product.categories %></td>
+              <td>$<%= product.price %></td>
+              <td><%= product.categories.name %></td>
             </tr>
           <% end  %>
         <% end %>
