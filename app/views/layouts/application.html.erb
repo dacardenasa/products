@@ -13,5 +13,8 @@
     <div class="container">
       <%= yield %>
     </div>
+    <% if flash[:notice] %>
+      <div class="alert alert-info text-center"><%= flash[:notice] %></div>
+    <% end %>
   </body>
 </html>

@@ -1,6 +1,6 @@
-<div class="row justify-content-center">
+<div class="row mt-5 justify-content-center">
   <div class="col-sm-6">
-    <h1><%= form_title %></h1>
+    <h1><strong><%= form_title %></strong></h1>
       <%= form_for @product do |f| %>
         <div class="form-group">
           <%= f.text_field :name, class: "form-control input-lg", placeholder: "Ingresa el nombre del producto" %>
@@ -8,62 +8,12 @@
         <div class="form-group">
           <%= f.number_field :price, class: "form-control input-lg", placeholder: "Ingresa el precio del producto" %>
         </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Perfumes
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Libros
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Tecnologia
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Electrodomesticos
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Aseo
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Juguetes
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Ropa
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Oficina
-          </label>
-        </div>
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Mascotas
-          </label>
-        </div>
-
+        <% @categories.each do |category| %>
+          <div class="form-check mb-2">
+            <input class="form-check-input" name="category_id[]" type="checkbox" value="<%= category.id %>" id="defaultCheck<%= category.id%>">
+            <label class="form-check-label" for="defaultCheck<%= category.id%>"><%= category.name %></label>
+          </div>
+        <% end %>
           <%= f.submit form_submit, class: "btn btn-primary btn-lg btn-block" %>
         </div>
       <% end %>
