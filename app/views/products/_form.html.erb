@@ -8,12 +8,19 @@
         <div class="form-group">
           <%= f.number_field :price, class: "form-control input-lg", placeholder: "Ingresa el precio del producto" %>
         </div>
-        <% @categories.each do |category| %>
-          <div class="form-check mb-2">
-            <input class="form-check-input" name="category_id[]" type="checkbox" value="<%= category.id %>" id="defaultCheck<%= category.id%>">
-            <label class="form-check-label" for="defaultCheck<%= category.id%>"><%= category.name %></label>
-          </div>
-        <% end %>
+          <% @categories.each do |category| %>
+            <% if @product.categories.include?(category) %>
+              <div class="form-check mb-2">
+                <input class="form-check-input" name="category_id[]" type="checkbox" value="<%= category.id %>" id="defaultCheck<%= category.id%>" checked>
+                <label class="form-check-label" for="defaultCheck<%= category.id%>"><%= category.name %></label>
+              </div>
+            <% else %>
+              <div class="form-check mb-2">
+                <input class="form-check-input" name="category_id[]" type="checkbox" value="<%= category.id %>" id="defaultCheck<%= category.id%>">
+                <label class="form-check-label" for="defaultCheck<%= category.id%>"><%= category.name %></label>
+              </div>
+            <% end %>
+          <% end %>
           <%= f.submit form_submit, class: "btn btn-primary btn-lg btn-block" %>
         </div>
       <% end %>
