@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
         categoria = Category.find(c)
         @product.categories << categoria
       end
-      redirect_to :root, notice: "El producto fue creado con éxito"
+      redirect_to products_path, notice: "El producto fue creado con éxito"
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
         categoria = Category.find(c)
         product.categories << categoria
       end
-      redirect_to :root, notice: "El producto fue actualizado con éxito"
+      redirect_to products_path, notice: "El producto fue actualizado con éxito"
     else
       render :edit
     end 
