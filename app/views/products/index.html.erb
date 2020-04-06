@@ -21,8 +21,14 @@
               <td><%= product.name %></td>
               <td>$<%= product.price %></td>
               <td>
+                <% count = 0 %>
                 <% product.categories.each do |category| %>
-                  <%= category.name %>
+                  <% count += 1 %>
+                  <%if count == product.categories.count %>
+                    <%= category.name %>
+                  <% else %>
+                    <%= category.name %>,
+                  <% end %>
                 <% end %>
               </td>
               <td class="text-right">
