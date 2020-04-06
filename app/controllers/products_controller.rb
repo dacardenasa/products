@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # puts params[:category_id].count
     @product = Product.create(params_var)
     if @product.save
       params[:category_id].each do | c |
@@ -31,7 +30,12 @@ class ProductsController < ApplicationController
 
   def update
     product = Product.find(params[:id])
+    product.categories.delete_all
     if product.update(params_var)
+      params[:category_id].each do | c |
+        categoria = Category.find(c)
+        product.categories << categoria
+      end
       redirect_to :root, notice: "El producto fue actualizado con éxito"
     else
       render :edit
